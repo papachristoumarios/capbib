@@ -15,6 +15,7 @@ help_mutations = '''
     S : Add square brackets
 '''
 
+
 def lower(s):
     return s.lower()
 
@@ -49,12 +50,12 @@ def mutate(references, pos, field, command):
     references = references.splitlines()
 
     mutations = {
-        'L' : lower,
-        'U' : upper,
-        'T' : title,
-        'C' : curly_brackets,
-        'S' : square_brackets,
-        'P' : parentheses
+        'L': lower,
+        'U': upper,
+        'T': title,
+        'C': curly_brackets,
+        'S': square_brackets,
+        'P': parentheses
     }
 
     result = []
@@ -74,7 +75,6 @@ def mutate(references, pos, field, command):
 
                     new_content = re.sub(token.text, temp, content)
 
-
             references[i] = re.sub(content, new_content, line)
 
     return '\n'.join(references)
@@ -82,10 +82,23 @@ def mutate(references, pos, field, command):
 
 if __name__ == '__main__':
     argparser = argparse.ArgumentParser()
-    argparser.add_argument('--pos', help='Part of speech to mutate (e.g. NOUN)', default='NOUN')
-    argparser.add_argument('--field', help='Field to mutate (e.g. title)', default='title')
-    argparser.add_argument('-c', help='Command to mutate\n' + help_mutations, default='T')
-    argparser.add_argument('--model', help='Model to use (e.g. en_core_web_sm)', default='en_core_web_sm')
+    argparser.add_argument(
+        '--pos',
+        help='Part of speech to mutate (e.g. NOUN)',
+        default='NOUN')
+    argparser.add_argument(
+        '--field',
+        help='Field to mutate (e.g. title)',
+        default='title')
+    argparser.add_argument(
+        '-c',
+        help='Command to mutate\n' +
+        help_mutations,
+        default='T')
+    argparser.add_argument(
+        '--model',
+        help='Model to use (e.g. en_core_web_sm)',
+        default='en_core_web_sm')
 
     args = argparser.parse_args()
 
