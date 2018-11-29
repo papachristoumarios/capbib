@@ -9,7 +9,7 @@ The available POS tags are described [here](https://spacy.io/usage/linguistic-fe
 
 ## Installation
 
-```
+```bash
 pip3 install -r requirements.txt
 python3 -m spacy download en_core_web_sm # Can be extended to other languages as well
 python3 setup.py install
