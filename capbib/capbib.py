@@ -5,7 +5,6 @@ import os
 import sys
 import spacy
 import re
-nlp = spacy.load('en_core_web_sm')
 
 help_mutations = '''
     U : To uppercase,
@@ -46,7 +45,7 @@ def parentheses(s):
 
 def mutate(references, pos, field, command):
     """Mutate certain POS to adjust their form"""
-
+    global nlp
     references = references.splitlines()
 
     mutations = {
@@ -86,8 +85,12 @@ if __name__ == '__main__':
     argparser.add_argument('--pos', help='Part of speech to mutate (e.g. NOUN)', default='NOUN')
     argparser.add_argument('--field', help='Field to mutate (e.g. title)', default='title')
     argparser.add_argument('-c', help='Command to mutate\n' + help_mutations, default='T')
+    argparser.add_argument('--model', help='Model to use (e.g. en_core_web_sm)', default='en_core_web_sm')
 
     args = argparser.parse_args()
+
+    global nlp
+    nlp = spacy.load(args.model)
 
     references = sys.stdin.read()
 
