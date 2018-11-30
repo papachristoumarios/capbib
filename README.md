@@ -1,4 +1,4 @@
-# :book: capbib: Bibliography Transformations made easier
+# :book: capbib: Bibliography Transformations made easier with NLP
 
 Transform BibTeX bibliographic references to match your journal discipline.
 For example, many journals require noun capitalization in titles and curly brackets in proper nouns.
